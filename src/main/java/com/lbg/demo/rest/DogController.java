@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lbg.demo.domain.Dog;
@@ -16,6 +17,7 @@ import com.lbg.demo.services.DogService;
 
 //This tells spring this class is a controller 
 @RestController
+@RequestMapping("/dog")
 public class DogController {
 
 	private DogService service;
@@ -45,14 +47,14 @@ public class DogController {
 	}
 
 	// this returns all
-	@GetMapping("/dog")
+	@GetMapping("/get")
 	public List<Dog> getDogs() {
 		return this.service.getDogs();
 	}
 
 	// 'id' is the index for now will return
 	// just god at that index
-	@GetMapping("/dog/{id}")
+	@GetMapping("/get/{id}")
 	public ResponseEntity<Dog> getDog(@PathVariable int id) {
 		return this.service.getDog(id);
 	}

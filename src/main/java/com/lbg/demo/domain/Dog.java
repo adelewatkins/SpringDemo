@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Dog {
@@ -15,6 +16,9 @@ public class Dog {
 	private String name;
 
 	private String breed;
+
+	@ManyToOne
+	private Family family;
 
 	public Dog() {
 		super();
@@ -42,6 +46,14 @@ public class Dog {
 
 	public void setBreed(String breed) {
 		this.breed = breed;
+	}
+
+	public Family getFamily() {
+		return family;
+	}
+
+	public void setFamily(Family family) {
+		this.family = family;
 	}
 
 	@Override

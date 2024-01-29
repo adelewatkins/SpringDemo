@@ -1,9 +1,14 @@
 package com.lbg.demo.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Family {
@@ -15,6 +20,10 @@ public class Family {
 	private String name;
 
 	private String location;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "family")
+	private List<Dog> dogs;
 
 	public Family() {
 		super();
@@ -47,6 +56,14 @@ public class Family {
 	@Override
 	public String toString() {
 		return "Family [id=" + id + ", name=" + name + ", location=" + location + "]";
+	}
+
+	public List<Dog> getDogs() {
+		return dogs;
+	}
+
+	public void setDogs(List<Dog> dogs) {
+		this.dogs = dogs;
 	}
 
 }
